@@ -1,19 +1,9 @@
-import { Navbar, NavbarBrand } from "reactstrap";
-import { dishes } from "./global/dishes";
-import Menu from "./components/MenuComponent";
+import React from "react";
+import MainComponent from "./components/MainComponent";
 import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <Navbar dark color="primary">
-        <div className="container">
-          <NavbarBrand href="/">my god</NavbarBrand>
-        </div>
-      </Navbar>
-      <Menu dishes={dishes} />
-    </div>
-  );
+  return <MainComponent />;
 }
 
 export default App;
