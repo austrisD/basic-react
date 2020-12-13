@@ -4,8 +4,9 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 let DishesDetail = (props) => {
   const src = props.dishDetail;
 
-  const timeConverter = (time) => {
+  const timeConverter = (timeStamp) => {
     const monthNames = [
+      "+1",
       "Jan",
       "Feb",
       "Mar",
@@ -19,10 +20,11 @@ let DishesDetail = (props) => {
       "Nov",
       "Dec",
     ];
-    const year = time.slice(0, time.search("-"));
-    const month =
-      monthNames[time.slice(time.indexOf("-") + 1, time.lastIndexOf("-"))-1];
-    const date = time.slice(time.lastIndexOf("-")+1, time.indexOf("T"))
+
+    const timeObj = new Date(timeStamp);
+    const month = monthNames[timeObj.getMonth()];
+    const date = timeObj.getMonth();
+    const year = timeObj.getFullYear();
     return `, ${month} ${date},${year}`;
   };
 
