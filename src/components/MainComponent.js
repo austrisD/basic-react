@@ -5,6 +5,7 @@ import DishDetail from "./DishDetailComponent";
 import Menu from "./MenuComponent";
 
 class MainComponent extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -30,13 +31,15 @@ class MainComponent extends Component {
           onClick={(dishId) => this.onDishSelect(dishId)}
         />
 
-        {this.state.selectedDish === undefined ? <DishDetail
+        {this.state.selectedDish === undefined ? (
+          <DishDetail
             dishDetail={
               this.state.dishes.filter(
                 (dish) => dish.id === this.state.selectedDish
               )[0]
             }
-          /> : null}
+          />
+        ) : null}
       </div>
     );
   }

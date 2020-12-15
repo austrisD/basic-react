@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 
-let DishesDetail = (props) => {
+const DishesDetail = (props) => {
   const src = props.dishDetail;
 
   const timeConverter = (timeStamp) => {
