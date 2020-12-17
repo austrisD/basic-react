@@ -27,8 +27,21 @@ const DishesDetail = (props) => {
     const year = timeObj.getFullYear();
     return `, ${month} ${date},${year}`;
   };
-
-  return (
+  const renderComment = () => {
+    src.comments.map((value) => {
+      return (
+        <div key={value.id}>
+          <CardText>{value.comment}</CardText>
+          <CardText>
+            --{value.author}
+            {timeConverter(value.date)}
+          </CardText>
+        </div>
+      );
+    });
+  };
+  console.log(src === !undefined);
+  return src === !undefined ? (
     <>
       <div key={src.id} className="col-12 col-md-5 m-1">
         <Card>
@@ -44,21 +57,13 @@ const DishesDetail = (props) => {
         <Card>
           <CardBody>
             <CardTitle>Comments</CardTitle>
-            {src.comments.map((value) => {
-              return (
-                <div key={value.id}>
-                  <CardText>{value.comment}</CardText>
-                  <CardText>
-                    --{value.author}
-                    {timeConverter(value.date)}
-                  </CardText>
-                </div>
-              );
-            })}
+            {renderComment}
           </CardBody>
         </Card>
       </div>
     </>
+  ) : (
+    <p>null</p>
   );
 };
 
