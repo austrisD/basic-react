@@ -10,8 +10,20 @@ import {
 import { Link } from "react-router-dom";
 
 function About(props) {
-  const leaders = props.leaders.map((leader) => {
-    return <p>Leader {leader.name}</p>;
+
+
+  const RenderLeader = props.leaders.map((leader) => {
+    return (
+      <Media key={leader.id}>
+        <Media left href="#">
+          <Media object src={leader.image} alt="missing" />
+        </Media>
+        <Media body>
+          <Media heading>{leader.name}</Media>
+          {leader.description}
+        </Media>
+      </Media>
+    );
   });
 
   return (
@@ -90,7 +102,7 @@ function About(props) {
           <h2>Corporate Leadership</h2>
         </div>
         <div className="col-12">
-          <Media list>{leaders}</Media>
+          <Media list>{RenderLeader}</Media>
         </div>
       </div>
     </div>
