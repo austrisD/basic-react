@@ -1,9 +1,15 @@
 import React from "react";
-import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
-
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  Breadcrumb,
+  BreadcrumbItem,
+} from "reactstrap";
+import { Link } from "react-router-dom";
 const DishesDetail = (props) => {
-  const src = props.dishDetail;
-
   const timeConverter = (timeStamp) => {
     const monthNames = [
       "+1",
@@ -27,43 +33,62 @@ const DishesDetail = (props) => {
     const year = timeObj.getFullYear();
     return `, ${month} ${date},${year}`;
   };
-  const renderComment = () => {
-    src.comments.map((value) => {
-      return (
-        <div key={value.id}>
-          <CardText>{value.comment}</CardText>
-          <CardText>
-            --{value.author}
-            {timeConverter(value.date)}
-          </CardText>
-        </div>
-      );
-    });
-  };
-  console.log(src === !undefined);
-  return src === !undefined ? (
-    <>
-      <div key={src.id} className="col-12 col-md-5 m-1">
-        <Card>
-          <CardImg top src={src.image} alt={src.name} />
-          <CardBody>
-            <CardTitle>{src.name}</CardTitle>
-            <CardText>{src.description}</CardText>
-          </CardBody>
-        </Card>
-      </div>
 
-      <div className="col-12 col-md-5 m-1">
+  const RenderDish = ({ dish }) => {
+    return (
+      <div className="col-12 col-md5 m-1">
         <Card>
+          <CardImg top src={dish.image} alt={dish.name} />
           <CardBody>
-            <CardTitle>Comments</CardTitle>
-            {renderComment}
+            <CardTitle>{dish.name}</CardTitle>
+            <CardText>{dish.description}</CardText>
           </CardBody>
         </Card>
       </div>
-    </>
-  ) : (
-    <p>null</p>
+    );
+  };
+  const RenderComments = ({ comments }) => {
+    return comments != null ? (
+      <div className="col-12 col-md-5 m-1" style={{ maxWidth: "none" }}>
+        <h4>Comments</h4>
+        <ul className="list-unstyled">
+          {comments.map((comment) => {
+            return (
+              <li key={comment.id}>
+                <p>{comment.comment}</p>
+                <p>
+                  -- {comment.author}, {timeConverter(comment.date)}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ) : null;
+  };
+  return (
+    <div className="container">
+      <div className="row">
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/menu">Menu</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+        </Breadcrumb>
+        <div className="col-12">
+          <h3>{props.dish.name}</h3>
+          <hr />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12 col-md-5 m-1">
+          <RenderDish dish={props.dish} />
+        </div>
+        <div className="col-12 col-md-5 m-1">
+          <RenderComments comments={props.comments} />
+        </div>
+      </div>
+    </div>
   );
 };
 
