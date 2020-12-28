@@ -12,6 +12,7 @@ import {
   ModalBody,
   Col,
   Label,
+  ModalHeader,
 } from "reactstrap";
 import { Control, LocalForm, Errors } from "react-redux-form";
 
@@ -112,6 +113,7 @@ const DishesDetail = (props) => {
             <span className="fa fa-pencil"></span> Submit Comment
           </Button>
           <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+            <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
             <ModalBody>
               <LocalForm onSubmit={this.handleComment}>
                 <Col>
