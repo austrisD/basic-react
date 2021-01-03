@@ -8,9 +8,7 @@ import {
   CardTitle,
   CardSubtitle,
 } from "reactstrap";
-
 import { baseUrl } from "../global/baseUrl";
-
 
 function RenderCard({ item, isLoading, errMess }) {
   if (isLoading) {
@@ -20,7 +18,7 @@ function RenderCard({ item, isLoading, errMess }) {
   } else
     return (
       <Card>
-        <CardImg src={baseUrl + item.image} alt={item.name} />{" "}
+        <CardImg src={baseUrl + item.image} alt={item.name} />
         <CardBody>
           <CardTitle>{item.name}</CardTitle>
           {item.designation ? (

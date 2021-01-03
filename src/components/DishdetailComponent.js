@@ -87,7 +87,7 @@ const DishesDetail = (props) => {
           " Comment: " +
           event.Comment
       );
-      this.props.addComment(
+      this.props.postComment(
         this.props.dishId,
         event.Rating,
         event.username,
@@ -184,7 +184,7 @@ const DishesDetail = (props) => {
     }
   }
 
-  const RenderComments = ({ comments, addComment, dishId }) => {
+  const RenderComments = ({ comments, postComment, dishId }) => {
     return comments != null ? (
       <div className="col-12 col-md-5 m-1" style={{ maxWidth: "none" }}>
         <h4>Comments</h4>
@@ -200,7 +200,7 @@ const DishesDetail = (props) => {
             );
           })}
         </ul>
-        <CommentForm dishId={dishId} addComment={addComment} />
+        <CommentForm dishId={dishId} postComment={postComment} />
       </div>
     ) : null;
   };
@@ -243,7 +243,7 @@ const DishesDetail = (props) => {
           <div className="col-12 col-md-5 m-1">
             <RenderComments
               comments={props.comments}
-              addComment={props.addComment}
+              postComment={props.postComment}
               dishId={props.dish.id}
             />
           </div>
